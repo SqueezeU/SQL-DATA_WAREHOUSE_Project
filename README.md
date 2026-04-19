@@ -82,7 +82,7 @@ At some point I realized: the most valuable thing in any business is **understan
 So I made the switch. Now I build the pipelines and models that turn raw data into decisions.
 
 📎 [LinkedIn](https://www.linkedin.com/in/errol-d-723667a5)
-📂 [Portfolio](https://github.com/SqueezeU/Errol-Dickl-Portfolio)
+📂 [Portfolio](https://github.com/SqueezeU)
 
 ---
 
