@@ -172,4 +172,4 @@ BEGIN
 		PRINT '-----------------------------------------'
 	END CATCH
 END
-EXEC bronze.load_bronze
+-- EXEC bronze.load_bronze
