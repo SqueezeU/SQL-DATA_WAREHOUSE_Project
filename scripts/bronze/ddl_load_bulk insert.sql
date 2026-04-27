@@ -16,7 +16,7 @@ Usage Example:
     EXEC bronze.load_bronze;
 ===============================================================================
 */
-CREATE   PROCEDURE bronze.load_bronze AS -- as we need to run it on daily basis
+CREATE OR ALTER PROCEDURE bronze.load_bronze AS -- as we need to run it on daily basis
 BEGIN
 	DECLARE @start_time DATETIME, @end_time DATETIME, @batch_start_time DATETIME, @batch_end_time DATETIME;
 	BEGIN TRY 
@@ -172,4 +172,3 @@ BEGIN
 		PRINT '-----------------------------------------'
 	END CATCH
 END
-EXEC bronze.load_bronze
