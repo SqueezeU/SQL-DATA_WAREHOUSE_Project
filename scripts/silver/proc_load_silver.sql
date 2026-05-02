@@ -31,8 +31,6 @@ BEGIN
     -- BEGIN TRY
 
         SET @batch_start_time = GETDATE();
-
-        SET @batch_start_time = GETDATE();
         PRINT '=================';
         PRINT 'Load Silver Layer';
         PRINT '=================';
