@@ -1,11 +1,11 @@
 /*
-======================================================
+===========================================================
 QA Script: Bronze Layer - erp_cust_az12
-======================================================
+===========================================================
 Script Purpose:
     QA checks on bronze.erp_cust_az12 before transformation
     into the silver layer.
-======================================================
+===========================================================
 */
 
 -- basic general check
@@ -15,16 +15,15 @@ SELECT
     gen
 FROM bronze.erp_cust_az12
 
--- STEP 1
--- Integrity Check: cid needs to be cleaned to join with silver.crm_cust_info
--- erp cid has 3 extra characters at the beginning (NAS) compared to crm cst_key
--- Solution will be applied in Transformation & Cleansing_erp_cust
-
+-- STEP 1: cid Format Check (NAS prefix identification)
+-- Note: Referential integrity against Silver can only be verified AFTER Silver load.
+--       At Bronze stage: identify the prefix pattern only.
+--       → Run full integrity check after EXEC silver.load_silver:
+--         SELECT * FROM silver.erp_cust_az12
+--         WHERE cid NOT IN (SELECT cst_key FROM silver.crm_cust_info);
 SELECT DISTINCT cid FROM bronze.erp_cust_az12
--- compare with silver to check join compatibility:
-SELECT cst_key FROM silver.crm_cust_info
--- checking join column values to compare with erp cid column
--- after transformation cid should match cst_key in silver.crm_cust_info
+WHERE cid LIKE 'NAS%';
+-- Result: NAS prefix identified → will be removed via SUBSTRING(cid, 4, LEN(cid)) in Silver
 
 -- STEP 2
 -- check for Invalid Dates in bdate

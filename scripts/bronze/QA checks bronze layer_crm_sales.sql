@@ -24,16 +24,17 @@ FROM bronze.crm_sales_details
 WHERE sls_ord_num != Trim(sls_ord_num)
 
 -- STEP 2
--- Integrity Check for column 2 and 3 as we need to join them with other tables
--- Expectation: No Results
-
-SELECT * FROM bronze.crm_sales_details
-WHERE sls_prd_key NOT IN (SELECT prd_key FROM silver.crm_prd_info)
-
-SELECT * FROM bronze.crm_sales_details
-WHERE sls_cust_id NOT IN (SELECT cst_id FROM silver.crm_cust_info)
-
--- Results first 3 columns as expected - no issues and useable, so perfect
+-- Join Column Format Check (sls_prd_key, sls_cust_id)
+-- Full referential integrity check only possible after Silver load.
+-- At Bronze stage: format consistency of join columns verified visually.
+-- → Run after EXEC silver.load_silver:
+--   SELECT * FROM bronze.crm_sales_details
+--   WHERE sls_prd_key NOT IN (SELECT prd_key FROM silver.crm_prd_info);
+--   SELECT * FROM bronze.crm_sales_details
+--   WHERE sls_cust_id NOT IN (SELECT cst_id FROM silver.crm_cust_info);
+SELECT DISTINCT sls_prd_key FROM bronze.crm_sales_details ORDER BY sls_prd_key;
+SELECT DISTINCT sls_cust_id FROM bronze.crm_sales_details ORDER BY sls_cust_id;
+-- Result: Formats look consistent — full integrity to be confirmed after Silver load
 
 -- STEP 3
 -- check for Invalid Dates
