@@ -79,9 +79,12 @@ Each layer includes a dedicated QA process covering duplicate checks, NULL handl
 whitespace validation, standardization of low-cardinality columns, date validation, 
 and referential integrity checks.
 
-For a quick overview of all checks performed per layer, see the QA Summary scripts 
-in each folder. Detailed step-by-step analysis, findings, and brainstorming notes 
-are documented in the individual QA scripts.
+For a quick overview of all checks performed per layer, see the QA Summary scripts:
+- `scripts/bronze/quality_checks_bronze.sql`
+- `scripts/silver/quality_checks_silver.sql`
+
+Detailed step-by-step analysis, findings, and brainstorming notes are documented 
+in the individual QA scripts in the same folders.
 
 ---
 
