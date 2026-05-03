@@ -70,7 +70,18 @@ sql-data-warehouse-project/
 │   ├── silver/        # Cleansing & transformation
 │   └── gold/          # Dimensional model & fact tables
 └── README.md
+
 ```
+
+## 🔍 Quality Assurance
+
+Each layer includes a dedicated QA process covering duplicate checks, NULL handling, 
+whitespace validation, standardization of low-cardinality columns, date validation, 
+and referential integrity checks.
+
+For a quick overview of all checks performed per layer, see the QA Summary scripts 
+in each folder. Detailed step-by-step analysis, findings, and brainstorming notes 
+are documented in the individual QA scripts.
 
 ---
 
